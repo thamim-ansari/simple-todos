@@ -90,32 +90,58 @@ class SimpleTodos extends Component {
 
   onClickAddTodos = () => {
     const {todosInput} = this.state
-    const newTodo = {
-      id: uid(),
-      title: todosInput,
-      isChecked: false,
+    const inputParts = todosInput.split(' ')
+    const lastPart = inputParts[inputParts.length - 1]
+
+    if (!Number.isNaN(Number(lastPart))) {
+      const count = parseInt(lastPart)
+      const todo = inputParts.slice(0, inputParts.length - 1).join(' ')
+
+      const newTodos = []
+      for (let i = 0; i < count; i += 1) {
+        newTodos.push({
+          id: uid(),
+          title: todo,
+          isChecked: false,
+        })
+      }
+
+      this.setState(prev => ({
+        todosList: [...prev.todosList, ...newTodos],
+        todosInput: '',
+      }))
+    } else {
+      const newTodo = {
+        id: uid(),
+        title: todosInput,
+        isChecked: false,
+      }
+
+      this.setState(prev => ({
+        todosList: [...prev.todosList, newTodo],
+        todosInput: '',
+      }))
     }
-    this.setState(prev => ({
-      todosList: [...prev.todosList, newTodo],
-      todosInput: '',
-    }))
   }
 
   render() {
     const {todosList, todosInput} = this.state
-    console.log(todosList)
-
     return (
       <div className="todo-app">
         <div className="todo-container">
           <h1 className="heading">Simple Todos</h1>
-          <div>
+          <div className="todo-input-container">
             <input
               type="text"
               value={todosInput}
               onChange={this.onChangeTodo}
+              className="todo-input"
             />
-            <button type="button" onClick={this.onClickAddTodos}>
+            <button
+              type="button"
+              className="todo-add-btn"
+              onClick={this.onClickAddTodos}
+            >
               Add
             </button>
           </div>

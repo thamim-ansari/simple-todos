@@ -44,3 +44,41 @@
 .todos-list {
   padding-left: 0;
 }
+.todo-input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 768px) {
+  .todo-input-container {
+    width: 60%;
+    margin-bottom: 20px;
+  }
+}
+.todo-input {
+  font-family: 'Roboto';
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid grey;
+  padding-left: 15px;
+  flex-grow: 1;
+  outline: none;
+}
+
+.todo-add-btn {
+  color: #ffffff;
+  background-color: #ffc2a0;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .todo-add-btn {
+    padding: 12px 24px;
+  }
+}

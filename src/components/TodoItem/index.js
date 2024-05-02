@@ -32,24 +32,41 @@ const TodoItem = props => {
   }
   return (
     <li className="todo-item">
-      <input type="checkbox" onClick={onClickCheck} />
-      {isEditActive ? (
-        <input type="text" value={textInput} onChange={onChangeTodo} />
-      ) : (
-        <p className={toDoClass}>{title}</p>
-      )}
-      {isSaveActive ? (
-        <button type="button" onClick={onClickSave}>
-          save
+      <div className="todo-item-container">
+        <input type="checkbox" onClick={onClickCheck} />
+        {isEditActive ? (
+          <input
+            type="text"
+            value={textInput}
+            className="editable-todo-input"
+            onChange={onChangeTodo}
+          />
+        ) : (
+          <p className={toDoClass}>{title}</p>
+        )}
+      </div>
+      <div className="todo-item-btn-container">
+        {isSaveActive ? (
+          <button
+            type="button"
+            className="save-and-edit-btn"
+            onClick={onClickSave}
+          >
+            save
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="save-and-edit-btn"
+            onClick={onClickEdit}
+          >
+            Edit
+          </button>
+        )}
+        <button type="button" className="delete-btn" onClick={onDeleteTodo}>
+          Delete
         </button>
-      ) : (
-        <button type="button" onClick={onClickEdit}>
-          Edit
-        </button>
-      )}
-      <button type="button" className="delete-btn" onClick={onDeleteTodo}>
-        Delete
-      </button>
+      </div>
     </li>
   )
 }
